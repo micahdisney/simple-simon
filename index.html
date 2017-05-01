@@ -111,6 +111,20 @@ Planning out the project (for this morning)...
             bottom:0px;
             left:0px;
         }
+        #menu{
+            height:auto;
+            width:70px;
+            border:1px solid black;
+            text-align: center;
+            background-color:black;
+            color:white;
+            position:absolute;
+            top:48%;
+            left:43%;
+            font-size:20px;
+            opacity:0.9;
+        }
+
     </style>
 </head>
 <body>
@@ -122,6 +136,7 @@ Planning out the project (for this morning)...
     <div id="blue-square" class="square"></div>
     <div id="yellow-square" class="square"></div>
     <div id="green-square" class="square"></div>
+    <!--<div id="menu">PRESS</div>-->
 </div>
 
 
@@ -130,25 +145,116 @@ Planning out the project (for this morning)...
         crossorigin="anonymous"></script>
 <script>
 
-$('#red-square').click(function() {
+
+//$('.square').click(function() {
+//    $(this).fadeTo('', 0.9).fadeTo('', 0.2);
+//});
+
+
+
+var redWasClicked = $('#red-square').click(function() {
     $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-    console.log('red square clicked');
+    console.log('user clicked red');
 });
 
-$('#blue-square').click(function() {
+var blueWasClicked = $('#blue-square').click(function() {
     $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-    console.log('blue square clicked');
 });
 
-$('#yellow-square').click(function() {
+var yellowWasClicked = $('#yellow-square').click(function() {
     $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-    console.log('yellow square clicked');
 });
 
-$('#green-square').click(function() {
+var greenWasClicked = $('#green-square').click(function() {
     $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-    console.log('green square clicked');
 });
+
+//$('#menu').click(function() {
+//    $(this).fadeTo('', 0.2);
+//    console.log('menu pressed');
+//});
+
+
+
+$(function() {
+    setTimeout(function () {
+        $("#blue-square").fadeTo('', 0.9).fadeTo('', 0.2);
+        console.log('blue')
+    }, 1000);
+});
+
+
+$(function() {
+    setTimeout(function () {
+        $("#green-square").fadeTo('', 0.9).fadeTo('', 0.2);
+        console.log('green')
+    }, 2000);
+});
+
+//$(function() {
+//    setTimeout(function () {
+//        $("#yellow-square").fadeTo('', 0.9).fadeTo('', 0.2);
+//        console.log('yellow')
+//    }, 3000);
+//});
+//
+//
+//$(function() {
+//    setTimeout(function () {
+//        $("#green-square").fadeTo('', 0.9).fadeTo('', 0.2);
+//        console.log('green')
+//    }, 4000);
+//});
+//
+//
+//$(function() {
+//    setTimeout(function () {
+//        $("#red-square").fadeTo('', 0.9).fadeTo('', 0.2);
+//        console.log('red')
+//    }, 5000);
+//});
+//
+//$(function() {
+//    setTimeout(function () {
+//        $("#red-square").fadeTo('', 0.9).fadeTo('', 0.2);
+//        console.log('red')
+//    }, 6000);
+//});
+//
+//$(function() {
+//    setTimeout(function () {
+//        $("#yellow-square").fadeTo('', 0.9).fadeTo('', 0.2);
+//        console.log('yellow')
+//    }, 7000);
+//});
+//
+//$(function() {
+//    setTimeout(function () {
+//        $("#blue-square").fadeTo('', 0.9).fadeTo('', 0.2);
+//        console.log('blue')
+//    }, 8000);
+//});
+//
+//$(function() {
+//    setTimeout(function () {
+//        $("#green-square").fadeTo('', 0.9).fadeTo('', 0.2);
+//        console.log('green')
+//    }, 9000);
+//});
+//
+//$(function() {
+//    setTimeout(function () {
+//        $("#blue-square").fadeTo('', 0.9).fadeTo('', 0.2);
+//        console.log('blue')
+//    }, 10000);
+//});
+
+
+
+
+
+
+
 
 </script>
 </body>
