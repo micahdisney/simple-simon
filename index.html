@@ -65,9 +65,65 @@ Planning out the project (for this morning)...
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Simple Simon</title>
+    <style>
+        body{
+            background-color:grey;
+        }
+        h1{
+            text-align:center;
+        }
+        #container{
+            height:500px;
+            width:500px;
+            background-color:grey;
+            border:5px solid black;
+            position:relative;
+            margin:auto;
+            margin-top:20px;
+        }
+        .square{
+            height:240px;
+            width:240px;
+            border:3px solid black;
+            margin:3px;
+            position:absolute;
+            opacity:0.2;
+        }
+        #red-square{
+            background-color: red;
+            top:0px;
+            left:0px;
+        }
+        #blue-square{
+            background-color: blue;
+            position:absolute;
+            top:0px;
+            right:0px;
+        }
+        #yellow-square{
+            background-color: yellow;
+            bottom:0px;
+            right:0px;
+        }
+        #green-square{
+            background-color: green;
+            bottom:0px;
+            left:0px;
+        }
+    </style>
 </head>
 <body>
+
+<h1>Simple Simon</h1>
+
+<div id="container">
+    <div id="red-square" class="square"></div>
+    <div id="blue-square" class="square"></div>
+    <div id="yellow-square" class="square"></div>
+    <div id="green-square" class="square"></div>
+</div>
+
 
 </body>
 </html>
