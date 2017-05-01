@@ -1,3 +1,66 @@
+<!--
+-- PLAN PROJECT --
+
+Planning out the project (for this morning)...
+
+   a) write out all the rules for Simple Simon in your own words with clear and simple language
+       - make sure you can clearly describe the game
+       - make sure you understand all the steps of playing the game
+       - make sure you understand how to pass a round and how to lose the game
+
+       -user turns on game
+       -user can turn on game by pressing any button
+       -game starts by generating random color
+       -the random color lights up on button
+       -user clicks on button that lit up
+       -game repeats color and adds another one to sequence
+       -user repeats the sequence
+       -if user replicates the correct sequence
+            -game replicates same sequence and adds another random color
+            -repeat rounds until user gets wrong
+            -game makes sound to alert game over and buttons all blink
+       -if user ges sequence wrong
+            -game over
+            -game starts over if user presses any button
+
+
+   b) draft the logical steps of your game using pseudo-code (BE SPECIFIC - these steps will be the beginning of your comments)
+       - consider any global variables you will need to define
+       - consider all functions you will need to execute processes to run the game
+       - consider all events you will need to interact with the game
+
+
+       - each square needs to be able to flash when with clicked on or sequence is running
+       - sequence needs to generated with random number 1-4
+       - each number connects to different color button
+       - sequence only generates one output
+       - another number will generate if user gets previous sequence correct
+       - sequence will have to remain the same after random numbers generated
+       - start by having full random sequence in array and only allowing to play one at a time?
+       - break from sequence if user gets wrong or reaches the end of sequence.
+
+
+   c) consider what extra features you want to eventually add
+
+      - on off button
+      - reset button
+      - a timer that ends game for user if they take too long
+      - user gets score based off number of rounds
+
+
+   d) plan out the design or theme you eventually will create
+
+      - container with 4 divs to hold 4 boxes
+      - make container have relative position
+      - make boxes have absolute positioning
+      - place each button at corner of container
+      - resize boxes to take up most of the container
+      - make box initial color dim
+      - boxes light up during game
+
+
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
