@@ -8,20 +8,20 @@ Planning out the project (for this morning)...
        - make sure you understand all the steps of playing the game
        - make sure you understand how to pass a round and how to lose the game
 
-       -user turns on game
-       -user can turn on game by pressing any button
+       -input turns on game
+       -input can turn on game by pressing any button
        -game starts by generating random color
        -the random color lights up on button
-       -user clicks on button that lit up
-       -game repeats color and adds another one to sequence
-       -user repeats the sequence
-       -if user replicates the correct sequence
-            -game replicates same sequence and adds another random color
-            -repeat rounds until user gets wrong
+       -input clicks on button that lit up
+       -game repeats color and adds another one to computerSequence
+       -input repeats the computerSequence
+       -if input replicates the correct computerSequence
+            -game replicates same computerSequence and adds another random color
+            -repeat rounds until input gets wrong
             -game makes sound to alert game over and buttons all blink
-       -if user ges sequence wrong
+       -if input ges computerSequence wrong
             -game over
-            -game starts over if user presses any button
+            -game starts over if input presses any button
 
 
 
@@ -31,22 +31,22 @@ Planning out the project (for this morning)...
        - consider all events you will need to interact with the game
 
 
-       - each square needs to be able to flash when with clicked on or sequence is running
-       - sequence needs to generated with random number 1-4
+       - each square needs to be able to flash when with clicked on or computerSequence is running
+       - computerSequence needs to generated with random number 1-4
        - each number connects to different color button
-       - sequence only generates one output
-       - another number will generate if user gets previous sequence correct
-       - sequence will have to remain the same after random numbers generated
-       - start by having full random sequence in array and only allowing to play one at a time?
-       - break from sequence if user gets wrong or reaches the end of sequence.
+       - computerSequence only generates one output
+       - another number will generate if input gets previous computerSequence correct
+       - computerSequence will have to remain the same after random numbers generated
+       - start by having full random computerSequence in array and only allowing to play one at a time?
+       - break from computerSequence if input gets wrong or reaches the end of computerSequence.
 
 
    c) consider what extra features you want to eventually add
 
       - on off button
       - reset button
-      - a timer that ends game for user if they take too long
-      - user gets score based off number of rounds
+      - a timer that ends game for input if they take too long
+      - input gets score based off number of rounds
 
 
    d) plan out the design or theme you eventually will create
@@ -68,62 +68,71 @@ Planning out the project (for this morning)...
     <meta charset="UTF-8">
     <title>Simple Simon</title>
     <style>
-        body{
-            background-color:grey;
+        body {
+            background-color: grey;
         }
-        h1{
-            text-align:center;
-        }
-        #container{
-            height:500px;
-            width:500px;
-            background-color:grey;
-            border:5px solid black;
-            position:relative;
-            margin:auto;
-            margin-top:20px;
-        }
-        .square{
-            height:240px;
-            width:240px;
-            border:3px solid black;
-            margin:3px;
-            position:absolute;
-            opacity:0.2;
-        }
-        #red-square{
-            background-color: red;
-            top:0px;
-            left:0px;
-        }
-        #blue-square{
-            background-color: blue;
-            position:absolute;
-            top:0px;
-            right:0px;
-        }
-        #yellow-square{
-            background-color: yellow;
-            bottom:0px;
-            right:0px;
-        }
-        #green-square{
-            background-color: green;
-            bottom:0px;
-            left:0px;
-        }
-        #menu{
-            height:auto;
-            width:70px;
-            border:1px solid black;
+
+        h1 {
             text-align: center;
-            background-color:black;
-            color:white;
-            position:absolute;
-            top:48%;
-            left:43%;
-            font-size:20px;
-            opacity:0.9;
+        }
+
+        #container {
+            height: 500px;
+            width: 500px;
+            background-color: grey;
+            border: 5px solid black;
+            position: relative;
+            margin: auto;
+            margin-top: 20px;
+            margin-bottom:10px;
+        }
+
+        .square {
+            height: 240px;
+            width: 240px;
+            border: 3px solid black;
+            margin: 3px;
+            position: absolute;
+            opacity: 0.2;
+        }
+
+        #red-square {
+            background-color: red;
+            top: 0px;
+            left: 0px;
+        }
+
+        #blue-square {
+            background-color: blue;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+        }
+
+        #yellow-square {
+            background-color: yellow;
+            bottom: 0px;
+            right: 0px;
+        }
+
+        #green-square {
+            background-color: green;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        #new-game {
+            height: auto;
+            width: 90px;
+            border: 1px solid black;
+            text-align: center;
+            background-color: black;
+            color: white;
+            top: 48%;
+            left: 41%;
+            font-size: 18px;
+            opacity: 0.9;
+            margin: auto;
         }
 
     </style>
@@ -137,8 +146,10 @@ Planning out the project (for this morning)...
     <div id="blue-square" class="square"></div>
     <div id="yellow-square" class="square"></div>
     <div id="green-square" class="square"></div>
-    <!--<div id="menu">PRESS</div>-->
 </div>
+
+
+<div id="new-game">New Game</div>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -147,113 +158,55 @@ Planning out the project (for this morning)...
 <script>
 
 
-//$('.square').click(function() {
-//    $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-//});
+
+    var computerArray = [];
+    var inputArray = [];
 
 
 
-var redWasClicked = $('#red-square').click(function() {
-    $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-    console.log('user clicked red');
-});
+//------------------buttons for each color flash and input is pushed to array----------------------------------------------
 
-var blueWasClicked = $('#blue-square').click(function() {
-    $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-});
+    $('#red-square').click(function () {
+        $(this).fadeTo('', 0.9).fadeTo('', 0.2);
+        inputArray.push(1);
+        console.log("-----input-----");
+        var inputString = inputArray.join(", ");
+        console.log(inputString);
+    });
 
-var yellowWasClicked = $('#yellow-square').click(function() {
-    $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-});
+    $('#blue-square').click(function () {
+        $(this).fadeTo('', 0.9).fadeTo('', 0.2);
+        inputArray.push(2);
+        console.log("-----input-----");
+        var inputString = inputArray.join(", ");
+        console.log(inputString);
+    });
 
-var greenWasClicked = $('#green-square').click(function() {
-    $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-});
+    $('#green-square').click(function () {
+        $(this).fadeTo('', 0.9).fadeTo('', 0.2);
+        inputArray.push(3);
+        console.log("-----input-----");
+        var inputString = inputArray.join(", ");
+        console.log(inputString);
+    });
 
-//$('#menu').click(function() {
-//    $(this).fadeTo('', 0.2);
-//    console.log('menu pressed');
-//});
+    $('#yellow-square').click(function () {
+        $(this).fadeTo('', 0.9).fadeTo('', 0.2);
+        inputArray.push(4);
+        console.log("-----input-----");
+        var inputString = inputArray.join(", ");
+        console.log(inputString);
+    });
 
+//-----------to start new game-------generates first number in computer array-----------------------
 
-
-$(function() {
-    setTimeout(function () {
-        $("#blue-square").fadeTo('', 0.9).fadeTo('', 0.2);
-        console.log('blue')
-    }, 1000);
-});
-
-
-$(function() {
-    setTimeout(function () {
-        $("#green-square").fadeTo('', 0.9).fadeTo('', 0.2);
-        console.log('green')
-    }, 2000);
-});
-
-//$(function() {
-//    setTimeout(function () {
-//        $("#yellow-square").fadeTo('', 0.9).fadeTo('', 0.2);
-//        console.log('yellow')
-//    }, 3000);
-//});
-//
-//
-//$(function() {
-//    setTimeout(function () {
-//        $("#green-square").fadeTo('', 0.9).fadeTo('', 0.2);
-//        console.log('green')
-//    }, 4000);
-//});
-//
-//
-//$(function() {
-//    setTimeout(function () {
-//        $("#red-square").fadeTo('', 0.9).fadeTo('', 0.2);
-//        console.log('red')
-//    }, 5000);
-//});
-//
-//$(function() {
-//    setTimeout(function () {
-//        $("#red-square").fadeTo('', 0.9).fadeTo('', 0.2);
-//        console.log('red')
-//    }, 6000);
-//});
-//
-//$(function() {
-//    setTimeout(function () {
-//        $("#yellow-square").fadeTo('', 0.9).fadeTo('', 0.2);
-//        console.log('yellow')
-//    }, 7000);
-//});
-//
-//$(function() {
-//    setTimeout(function () {
-//        $("#blue-square").fadeTo('', 0.9).fadeTo('', 0.2);
-//        console.log('blue')
-//    }, 8000);
-//});
-//
-//$(function() {
-//    setTimeout(function () {
-//        $("#green-square").fadeTo('', 0.9).fadeTo('', 0.2);
-//        console.log('green')
-//    }, 9000);
-//});
-//
-//$(function() {
-//    setTimeout(function () {
-//        $("#blue-square").fadeTo('', 0.9).fadeTo('', 0.2);
-//        console.log('blue')
-//    }, 10000);
-//});
-
-
-
-
-
+    $('#new-game').click(function () {
+        $(this).fadeTo('', 0.9);
+        computerArray.push(Math.floor(Math.random() * 4) + 1);
+        console.log("-----computer-----");
+        var computerString = computerArray.join(", ");
+        console.log(computerString);
+    });
 
 
 
