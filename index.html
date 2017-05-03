@@ -96,32 +96,32 @@ Planning out the project (for this morning)...
             opacity: 0.2;
         }
 
-        #red-square {
+        #red1 {
             background-color: red;
             top: 0px;
             left: 0px;
         }
 
-        #blue-square {
+        #blue2 {
             background-color: blue;
             position: absolute;
             top: 0px;
             right: 0px;
         }
 
-        #yellow-square {
-            background-color: yellow;
+        #green3 {
+            background-color: green;
             bottom: 0px;
             right: 0px;
         }
 
-        #green-square {
-            background-color: green;
+        #yellow4 {
+            background-color: yellow;
             bottom: 0px;
             left: 0px;
         }
 
-        #new-game {
+        #new-round {
             height: auto;
             width: 90px;
             border: 1px solid black;
@@ -142,14 +142,14 @@ Planning out the project (for this morning)...
 <h1>Simple Simon</h1>
 
 <div id="container">
-    <div id="red-square" class="square"></div>
-    <div id="blue-square" class="square"></div>
-    <div id="yellow-square" class="square"></div>
-    <div id="green-square" class="square"></div>
+    <div id="red1" class="square"></div>
+    <div id="blue2" class="square"></div>
+    <div id="green3" class="square"></div>
+    <div id="yellow4" class="square"></div>
 </div>
 
 
-<div id="new-game">New Game</div>
+<div id="new-round">New Round</div>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -160,53 +160,107 @@ Planning out the project (for this morning)...
 
 
     var computerArray = [];
-    var inputArray = [];
+    var userArray = [];
+    var userSelections = false;
+    var level = 0;
 
 
 
-//------------------buttons for each color flash and input is pushed to array----------------------------------------------
+    function addToSequence() {
+        var newRandomNumber = Math.floor((Math.random() * 4) + 1);
+        computerArray.push(newRandomNumber);
+        level += 1;
+        console.log("level:" + level);
+        console.log("Generating new random number " + newRandomNumber);
+        console.log("new sequence: " + computerArray);
+        InputSequence();
+    }
 
-    $('#red-square').click(function () {
-        $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-        inputArray.push(1);
-        console.log("-----input-----");
-        var inputString = inputArray.join(", ");
-        console.log(inputString);
+    function InputSequence() {
+        for (var i = 0; i < computerArray.length; i++) {
+            userArray = [];
+            userSelections = true;
+        }
+    }
+
+
+    function playerInput(squareColor) {
+        if (userSelections) {
+            userArray.push(squareColor);
+            if (userArray.length == computerArray.length) {
+                userSelections = false;
+                var correct = true;
+                for (var k = 0; k < userArray.length; k++) {
+                    if (userArray[k] !== computerArray[k]) {
+                        correct = false;
+                    }
+                }
+                if (correct) {
+                    console.log("sequence entered was correct");
+                    addToSequence();
+                } else {
+                    console.log('you are wrong');
+                }
+            }
+        }
+    }
+
+
+
+    $('#red1').click(function () {
+        if (userSelections) {
+            lightUpSquare(1);
+            playerInput(1);
+        }
+    });
+    $('#blue2').click(function () {
+        if (userSelections) {
+            lightUpSquare(2);
+            playerInput(2);
+        }
+    });
+    $('#green3').click(function () {
+        if (userSelections) {
+            lightUpSquare(3);
+            playerInput(3);
+        }
+    });
+    $('#yellow4').click(function () {
+        if (userSelections) {
+            lightUpSquare(4);
+            playerInput(4);
+        }
     });
 
-    $('#blue-square').click(function () {
-        $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-        inputArray.push(2);
-        console.log("-----input-----");
-        var inputString = inputArray.join(", ");
-        console.log(inputString);
+
+
+    function lightUpSquare(squareColor) {
+        switch (squareColor) {
+            case 1:
+                $('#red1').fadeTo('', 0.9).fadeTo('', 0.2);
+                break;
+            case 2:
+                $('#blue2').fadeTo('', 0.9).fadeTo('', 0.2);
+                break;
+            case 3:
+                $('#green3').fadeTo('', 0.9).fadeTo('', 0.2);
+                break;
+            case 4:
+                $('#yellow4').fadeTo('', 0.9).fadeTo('', 0.2);
+                break;
+        }
+    }
+
+
+    $('document').ready(function () {
+        setTimeout(function () {
+            addToSequence();
+        }, 2000);
     });
 
-    $('#green-square').click(function () {
-        $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-        inputArray.push(3);
-        console.log("-----input-----");
-        var inputString = inputArray.join(", ");
-        console.log(inputString);
-    });
 
-    $('#yellow-square').click(function () {
-        $(this).fadeTo('', 0.9).fadeTo('', 0.2);
-        inputArray.push(4);
-        console.log("-----input-----");
-        var inputString = inputArray.join(", ");
-        console.log(inputString);
-    });
 
-//-----------to start new game-------generates first number in computer array-----------------------
 
-    $('#new-game').click(function () {
-        $(this).fadeTo('', 0.9);
-        computerArray.push(Math.floor(Math.random() * 4) + 1);
-        console.log("-----computer-----");
-        var computerString = computerArray.join(", ");
-        console.log(computerString);
-    });
 
 
 
