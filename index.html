@@ -84,7 +84,7 @@ Planning out the project (for this morning)...
             position: relative;
             margin: auto;
             margin-top: 20px;
-            margin-bottom:10px;
+            margin-bottom: 10px;
         }
 
         .square {
@@ -158,12 +158,10 @@ Planning out the project (for this morning)...
 <script>
 
 
-
     var computerArray = [];
     var userArray = [];
     var userSelections = false;
     var level = 0;
-
 
 
     function addToSequence() {
@@ -176,11 +174,23 @@ Planning out the project (for this morning)...
         InputSequence();
     }
 
+    function playComputerArray(j, delay) {
+        setTimeout(function () {
+            lightUpSquare(computerArray[j]);
+        }, delay);
+    }
+
     function InputSequence() {
+        userSelections = false;
         for (var i = 0; i < computerArray.length; i++) {
-            userArray = [];
-            userSelections = true;
+            playComputerArray(i, (900 + (i * 900)));
+            if (i === computerArray.length -1) {
+                setTimeout(function () {
+                    userSelections = true;
+                }, 900 + (i * 900))
+            }
         }
+        userArray = [];
     }
 
 
@@ -196,7 +206,7 @@ Planning out the project (for this morning)...
                     }
                 }
                 if (correct) {
-                    console.log("sequence entered was correct");
+                    console.log("great job picking those colors");
                     addToSequence();
                 } else {
                     console.log('you are wrong');
@@ -204,7 +214,6 @@ Planning out the project (for this morning)...
             }
         }
     }
-
 
 
     $('#red1').click(function () {
@@ -233,7 +242,6 @@ Planning out the project (for this morning)...
     });
 
 
-
     function lightUpSquare(squareColor) {
         switch (squareColor) {
             case 1:
@@ -257,9 +265,6 @@ Planning out the project (for this morning)...
             addToSequence();
         }, 2000);
     });
-
-
-
 
 
 
