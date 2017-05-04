@@ -132,9 +132,9 @@ Planning out the project (for this morning)...
             left: 0px;
         }
 
-        #new-round {
+        #play-reset {
             height: auto;
-            width: 90px;
+            width: 120px;
             border: 1px solid black;
             text-align: center;
             background-color: black;
@@ -160,7 +160,7 @@ Planning out the project (for this morning)...
 </div>
 
 
-<div id="new-round">New Round</div>
+<div id="play-reset">PLAY/RESET</div>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -173,8 +173,6 @@ Planning out the project (for this morning)...
     var userArray = [];
     var userSelections = false;
     var level = 0;
-
-
 
 
     function addToSequence() {
@@ -197,7 +195,7 @@ Planning out the project (for this morning)...
         userSelections = false;
         for (var i = 0; i < computerArray.length; i++) {
             playComputerArray(i, (1200 + (i * 1200)));
-            if (i === computerArray.length -1) {
+            if (i === computerArray.length - 1) {
                 setTimeout(function () {
                     userSelections = true;
                 }, 1200 + (i * 1200))
@@ -223,6 +221,7 @@ Planning out the project (for this morning)...
                     addToSequence();
                 } else {
                     console.log('you are wrong');
+                    incorrect();
                 }
             }
         }
@@ -259,34 +258,52 @@ Planning out the project (for this morning)...
         switch (squareColor) {
             case 1:
                 $('#red1').fadeTo('', 0.9).fadeTo('', 0.3);
-                var sound1 = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_mario01.wav');
-                sound1.play();
+                var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_mario01.wav');
+                sound.play();
                 break;
             case 2:
                 $('#blue2').fadeTo('', 0.9).fadeTo('', 0.3);
-                var sound1 = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_dk04.wav');
-                sound1.play();
+                var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_dk04.wav');
+                sound.play();
                 break;
             case 3:
                 $('#green3').fadeTo('', 0.9).fadeTo('', 0.3);
-                var sound1 = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_luigi03.wav');
-                sound1.play();
+                http://themushroomkingdom.net/sounds/wav/mk64/mk64_loser.wav
                 break;
             case 4:
                 $('#yellow4').fadeTo('', 0.9).fadeTo('', 0.3);
-                var sound1 = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_wario05.wav');
-                sound1.play();
+                var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_wario05.wav');
+                sound.play();
                 break;
         }
     }
 
 
-    $('document').ready(function () {
+//    $('document').ready(function () {
+//        setTimeout(function () {
+//            addToSequence();
+//        }, 1200);
+//    });
+
+
+    function playOrReset() {
         setTimeout(function () {
+            level = 0;
+            computerArray = [];
+            console.log("reset sequence");
             addToSequence();
-        }, 2000);
+        }, 500)
+    }
+
+    $('#play-reset').click(function () {
+        playOrReset()
     });
 
+    function incorrect() {
+        var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_loser.wav');
+        sound.play();
+        console.log("you are wrong -- Game Over");
+    }
 
 
 
