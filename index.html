@@ -218,7 +218,7 @@ Planning out the project (for this morning)...
                 }
                 if (correct) {
                     console.log("great job picking those colors");
-                    addToSequence();
+                    weHaveAWinner();
                 } else {
                     console.log('you are wrong');
                     incorrect();
@@ -280,14 +280,40 @@ Planning out the project (for this morning)...
     }
 
 
-//    $('document').ready(function () {
-//        var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_racestart.wav');
-//        sound.play();
-//        });
+    //    $('document').ready(function () {
+    //        var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_racestart.wav');
+    //        sound.play();
+    //        });
 
     function playStartSong() {
         var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_racestart.wav');
         sound.play();
+    }
+
+    function winner() {
+        var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_firstplace.wav');
+        sound.play();
+        var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_mario_a11.wav');
+        sound.play();
+        $('#red1').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#red1').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#red1').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#red1').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#blue2').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#blue2').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#blue2').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#blue2').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#blue2').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#green3').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#green3').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#green3').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#green3').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#green3').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#yellow4').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#yellow4').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#yellow4').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#yellow4').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#yellow4').fadeTo('', 0.9).fadeTo('', 0.3);
     }
 
 
@@ -311,6 +337,15 @@ Planning out the project (for this morning)...
         console.log("you are wrong -- Game Over");
     }
 
+    function weHaveAWinner() {
+        setTimeout(function () {
+            if (level === 5) {
+                winner();
+            } else {
+                addToSequence();
+            }
+        });
+    }
 
 
 </script>
