@@ -80,6 +80,7 @@ Planning out the project (for this morning)...
             height: 500px;
             width: 500px;
             background-color: grey;
+            background-size: 500px;
             border: 5px solid black;
             position: relative;
             margin: auto;
@@ -90,44 +91,27 @@ Planning out the project (for this morning)...
         .square {
             height: 240px;
             width: 240px;
-            border: 3px solid black;
             margin: 3px;
             position: absolute;
             opacity: 0.3;
         }
 
         #red1 {
-            background: url('mario.jpg');
-            background-size: 240px;
-            border: 3px solid #ff0900;
-            background-color: #ff0900;
             top: 0px;
             left: 0px;
         }
 
         #blue2 {
-            background: url('donkeykong.png');
-            background-size: 240px;
-            background-color: #0b03ff;
-            border: 3px solid saddlebrown;
-            position: absolute;
             top: 0px;
             right: 0px;
         }
 
         #green3 {
-            background: url('luigi.png');
-            background-size: 240px;
-            border: 3px solid #0aff02;
-            background-color: #0aff02;
             bottom: 0px;
             right: 0px;
         }
 
         #yellow4 {
-            background: url('wario.jpg');
-            background-size: 240px;
-            border: 3px solid #ffe100;
             bottom: 0px;
             left: 0px;
         }
@@ -148,6 +132,43 @@ Planning out the project (for this morning)...
 
         .red {
             background-color: darkred;
+        }
+
+        .mario {
+            background: url('mario.jpg');
+            background-size: 240px;
+            border: 3px solid #ff0900;
+            background-color: white;
+            top: 0px;
+            left: 0px;
+        }
+
+        .dk {
+            background: url('donkeykong.png');
+            background-size: 240px;
+            background-color: white;
+            border: 3px solid saddlebrown;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+        }
+
+        .luigi {
+            background: url('luigi.png');
+            background-size: 240px;
+            border: 3px solid #0aff02;
+            background-color: white;
+            bottom: 0px;
+            right: 0px;
+        }
+
+        .wario {
+            background: url('wario.jpg');
+            background-size: 240px;
+            border: 3px solid #ffe100;
+            background-color: white;
+            bottom: 0px;
+            left: 0px;
         }
 
 
@@ -304,6 +325,7 @@ Planning out the project (for this morning)...
         $('#red1').fadeTo('', 0.9).fadeTo('', 0.3);
         $('#red1').fadeTo('', 0.9).fadeTo('', 0.3);
         $('#red1').fadeTo('', 0.9).fadeTo('', 0.3);
+        $('#red1').fadeTo('', 0.9).fadeTo('', 0.3);
         $('#blue2').fadeTo('', 0.9).fadeTo('', 0.3);
         $('#blue2').fadeTo('', 0.9).fadeTo('', 0.3);
         $('#blue2').fadeTo('', 0.9).fadeTo('', 0.3);
@@ -334,12 +356,24 @@ Planning out the project (for this morning)...
     $('#play-reset').click(function () {
         playStartSong();
         playOrReset();
+        $('#red1').addClass('mario');
+        $('#blue2').addClass('dk');
+        $('#green3').addClass('luigi');
+        $('#yellow4').addClass('wario');
+
     });
 
     function incorrect() {
         var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_loser.wav');
         sound.play();
+        var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_bowser03.wav');
+        sound.play();
         $('body').addClass('red');
+        $('#red1').removeClass('mario');
+        $('#blue2').removeClass('dk');
+        $('#green3').removeClass('luigi');
+        $('#yellow4').removeClass('wario');
+        $('#container').css("background-image", "url(bowser.png)");
     }
 
     function weHaveAWinner() {
