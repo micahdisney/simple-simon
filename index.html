@@ -268,7 +268,8 @@ Planning out the project (for this morning)...
                 break;
             case 3:
                 $('#green3').fadeTo('', 0.9).fadeTo('', 0.3);
-                http://themushroomkingdom.net/sounds/wav/mk64/mk64_loser.wav
+                var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_luigi03.wav');
+                sound.play();
                 break;
             case 4:
                 $('#yellow4').fadeTo('', 0.9).fadeTo('', 0.3);
@@ -280,10 +281,14 @@ Planning out the project (for this morning)...
 
 
 //    $('document').ready(function () {
-//        setTimeout(function () {
-//            addToSequence();
-//        }, 1200);
-//    });
+//        var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_racestart.wav');
+//        sound.play();
+//        });
+
+    function playStartSong() {
+        var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_racestart.wav');
+        sound.play();
+    }
 
 
     function playOrReset() {
@@ -292,11 +297,12 @@ Planning out the project (for this morning)...
             computerArray = [];
             console.log("reset sequence");
             addToSequence();
-        }, 500)
+        }, 5500)
     }
 
     $('#play-reset').click(function () {
-        playOrReset()
+        playStartSong();
+        playOrReset();
     });
 
     function incorrect() {
