@@ -97,26 +97,37 @@ Planning out the project (for this morning)...
         }
 
         #red1 {
+            background: url('mario.jpg');
+            background-size: 240px;
+            border: 3px solid #ff0900;
             background-color: #ff0900;
             top: 0px;
             left: 0px;
         }
 
         #blue2 {
+            background: url('donkeykong.png');
+            background-size: 240px;
             background-color: #0b03ff;
+            border: 3px solid saddlebrown;
             position: absolute;
             top: 0px;
             right: 0px;
         }
 
         #green3 {
+            background: url('luigi.png');
+            background-size: 240px;
+            border: 3px solid #0aff02;
             background-color: #0aff02;
             bottom: 0px;
             right: 0px;
         }
 
         #yellow4 {
-            background-color: #ffe100;
+            background: url('wario.jpg');
+            background-size: 240px;
+            border: 3px solid #ffe100;
             bottom: 0px;
             left: 0px;
         }
@@ -164,6 +175,8 @@ Planning out the project (for this morning)...
     var level = 0;
 
 
+
+
     function addToSequence() {
         var newRandomNumber = Math.floor((Math.random() * 4) + 1);
         computerArray.push(newRandomNumber);
@@ -183,11 +196,11 @@ Planning out the project (for this morning)...
     function InputSequence() {
         userSelections = false;
         for (var i = 0; i < computerArray.length; i++) {
-            playComputerArray(i, (900 + (i * 900)));
+            playComputerArray(i, (1200 + (i * 1200)));
             if (i === computerArray.length -1) {
                 setTimeout(function () {
                     userSelections = true;
-                }, 900 + (i * 900))
+                }, 1200 + (i * 1200))
             }
         }
         userArray = [];
@@ -246,15 +259,23 @@ Planning out the project (for this morning)...
         switch (squareColor) {
             case 1:
                 $('#red1').fadeTo('', 0.9).fadeTo('', 0.3);
+                var sound1 = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_mario01.wav');
+                sound1.play();
                 break;
             case 2:
                 $('#blue2').fadeTo('', 0.9).fadeTo('', 0.3);
+                var sound1 = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_dk04.wav');
+                sound1.play();
                 break;
             case 3:
                 $('#green3').fadeTo('', 0.9).fadeTo('', 0.3);
+                var sound1 = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_luigi03.wav');
+                sound1.play();
                 break;
             case 4:
                 $('#yellow4').fadeTo('', 0.9).fadeTo('', 0.3);
+                var sound1 = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_wario05.wav');
+                sound1.play();
                 break;
         }
     }
