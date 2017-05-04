@@ -66,7 +66,7 @@ Planning out the project (for this morning)...
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Simple Simon</title>
+    <title>Simple Mario</title>
     <style>
         body {
             background-color: grey;
@@ -146,11 +146,16 @@ Planning out the project (for this morning)...
             margin: auto;
         }
 
+        .red {
+            background-color: darkred;
+        }
+
+
     </style>
 </head>
 <body>
 
-<h1>Simple Simon</h1>
+<h1>Simple Mario</h1>
 
 <div id="container">
     <div id="red1" class="square"></div>
@@ -334,7 +339,7 @@ Planning out the project (for this morning)...
     function incorrect() {
         var sound = new Audio('http://themushroomkingdom.net/sounds/wav/mk64/mk64_loser.wav');
         sound.play();
-        console.log("you are wrong -- Game Over");
+        $('body').addClass('red');
     }
 
     function weHaveAWinner() {
