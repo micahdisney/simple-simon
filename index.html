@@ -173,6 +173,17 @@ Planning out the project (for this morning)...
             left: 0px;
         }
 
+        .toad {
+            background: url('toad.png');
+            background-size: 535px;
+            background-repeat: no-repeat;
+            height:100%;
+        }
+
+        .bowser {
+            background: url('bowser.png');
+        }
+
 
     </style>
 </head>
@@ -201,6 +212,9 @@ Planning out the project (for this morning)...
     var userArray = [];
     var userSelections = false;
     var level = 0;
+
+
+
 
 
     function addToSequence() {
@@ -346,6 +360,10 @@ Planning out the project (for this morning)...
     }
 
 
+    $('document').ready(function () {
+        $('#container').addClass('toad');
+    });
+
     function playOrReset() {
         setTimeout(function () {
             level = 0;
@@ -358,12 +376,13 @@ Planning out the project (for this morning)...
     $('#play-reset').click(function () {
         playStartSong();
         playOrReset();
-//        $('#container').removeAttribute('id');
+        $('#container').removeClass('toad');
+        $("#container").removeClass('bowser');
+        $('body').removeClass('red');
         $('#red1').addClass('mario');
         $('#blue2').addClass('dk');
         $('#green3').addClass('luigi');
         $('#yellow4').addClass('wario');
-
     });
 
     function incorrect() {
@@ -376,7 +395,7 @@ Planning out the project (for this morning)...
         $('#blue2').removeClass('dk');
         $('#green3').removeClass('luigi');
         $('#yellow4').removeClass('wario');
-        $('#container').css("background-image", "url(bowser.png)");
+        $('#container').addClass('bowser');
     }
 
     function weHaveAWinner() {
