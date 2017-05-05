@@ -214,7 +214,7 @@ Planning out the project (for this morning)...
 
     var computerArray = [];
     var userArray = [];
-    var userSelections = false;
+    var selectionsAreAllowed = false;
     var level = 0;
 
 
@@ -227,7 +227,7 @@ Planning out the project (for this morning)...
         console.log("level:" + level);
         console.log("Generating new random number " + newRandomNumber);
         console.log("new sequence: " + computerArray);
-        InputSequence();
+        playArrayThenAllowResponse();
     }
 
 //-----------------------------function to play the computer array
@@ -238,29 +238,29 @@ Planning out the project (for this morning)...
         }, delay);
     }
 
-//--------------------------function takes user's input after computer array plays
+//--------------------------function plays computer array and then allows user to respond
 
-    function InputSequence() {
-        userSelections = false;
-        for (var i = 0; i < computerArray.length; i++) {
-            playComputerArray(i, (1600 + (i * 1600)));
-            if (i === computerArray.length - 1) {
-                setTimeout(function () {
-                    userSelections = true;
-                }, 1600 + (i * 1600))
-            }
-        }
+    function playArrayThenAllowResponse() {
         userArray = [];
+        selectionsAreAllowed = false;
+        for (var i = 0; i < computerArray.length; i++) {
+            playComputerArray(i, (1500 + (i * 1500)));
+            if (i === computerArray.length - 1) {       //user can press buttons once computer array finishes playing
+                setTimeout(function () {                //===========================================================
+                    selectionsAreAllowed = true;        //===========================================================
+                }, 1700 + (i * 1700))                   //===========================================================
+            }                                           //===========================================================
+        }
     }
 
 
 //-----------------------------checks if the correct or incorrect
 
     function playerInput(squareColor) {
-        if (userSelections) {
+        if (selectionsAreAllowed) {
             userArray.push(squareColor);
             if (userArray.length == computerArray.length) {
-                userSelections = false;
+                selectionsAreAllowed = false;
                 var correct = true;
                 for (var k = 0; k < userArray.length; k++) {
                     if (userArray[k] !== computerArray[k]) {
@@ -279,29 +279,29 @@ Planning out the project (for this morning)...
     }
 
 
-//---------------------------------------------------on click functions
+//---------------------------------------------------click functions for eaach square
 
 
     $('#red1').click(function () {
-        if (userSelections) {
+        if (selectionsAreAllowed) {
             lightUpSquare(1);
             playerInput(1);
         }
     });
     $('#blue2').click(function () {
-        if (userSelections) {
+        if (selectionsAreAllowed) {
             lightUpSquare(2);
             playerInput(2);
         }
     });
     $('#green3').click(function () {
-        if (userSelections) {
+        if (selectionsAreAllowed) {
             lightUpSquare(3);
             playerInput(3);
         }
     });
     $('#yellow4').click(function () {
-        if (userSelections) {
+        if (selectionsAreAllowed) {
             lightUpSquare(4);
             playerInput(4);
         }
