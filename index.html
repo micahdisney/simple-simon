@@ -218,7 +218,7 @@ Planning out the project (for this morning)...
     var level = 0;
 
 
-
+//---------------------------function to add a random number
 
     function addToSequence() {
         var newRandomNumber = Math.floor((Math.random() * 4) + 1);
@@ -230,11 +230,15 @@ Planning out the project (for this morning)...
         InputSequence();
     }
 
+//-----------------------------function to play the computer array
+
     function playComputerArray(j, delay) {
         setTimeout(function () {
             lightUpSquare(computerArray[j]);
         }, delay);
     }
+
+//--------------------------function takes user's input after computer array plays
 
     function InputSequence() {
         userSelections = false;
@@ -249,6 +253,8 @@ Planning out the project (for this morning)...
         userArray = [];
     }
 
+
+//-----------------------------checks if the correct or incorrect
 
     function playerInput(squareColor) {
         if (userSelections) {
@@ -271,6 +277,9 @@ Planning out the project (for this morning)...
             }
         }
     }
+
+
+//---------------------------------------------------on click functions
 
 
     $('#red1').click(function () {
@@ -297,6 +306,8 @@ Planning out the project (for this morning)...
             playerInput(4);
         }
     });
+
+//-----------------------------------------------animations for each square
 
 
     function lightUpSquare(squareColor) {
@@ -326,7 +337,7 @@ Planning out the project (for this morning)...
 
 
 
-
+//---------------------------------------function for player winning game
 
     function winner() {
         var sound = new Audio('audio/applause.mp3');
@@ -353,6 +364,7 @@ Planning out the project (for this morning)...
         $('#yellow4').fadeTo('', 0.9).fadeTo('', 0.3);
     }
 
+//---------------------starts oregon trail music one page loads
 
     $('document').ready(function () {
         var sound = new Audio('audio/the-oregon-trail.mp3');
@@ -361,14 +373,18 @@ Planning out the project (for this morning)...
         $('#container').addClass('applause');
     });
 
+//----------------------to reset the array and level...resets the game
+
     function playOrReset() {
         setTimeout(function () {
             level = 0;
             computerArray = [];
             console.log("reset sequence");
             addToSequence();
-        },3000)
+        },2000)
     }
+
+//------------------------ click function for play/reset button
 
     $('#play-reset').click(function () {
         playOrReset();
@@ -381,6 +397,8 @@ Planning out the project (for this morning)...
         $('#yellow4').addClass('cow4');
     });
 
+//-------------------------------------------for incorrect
+
     function incorrect() {
         var sound = new Audio('audio/booing.mp3');
         sound.play();
@@ -391,6 +409,8 @@ Planning out the project (for this morning)...
         $('#yellow4').removeClass('cow4');
         $('#container').addClass('boo');
     }
+
+//-----------------------------------------for a winner
 
     function weHaveAWinner() {
         setTimeout(function () {
