@@ -63,6 +63,7 @@ h3 {
     font-size: 18px;
     opacity: 0.9;
     margin: auto;
+    cursor: pointer;
 }
 
 .red {
